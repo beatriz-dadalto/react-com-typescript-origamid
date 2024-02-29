@@ -1,31 +1,19 @@
 import React from "react";
-import videoSrc from "./video.mp4";
-import useLocalStorage from "./useLocalStorage";
+import useFetch from "./useFetch";
+
+type Produto = {
+  id: string;
+  nome: string;
+  preco: number;
+  quantidade: number;
+  descricao: string;
+  internacional: boolean;
+};
 
 function App() {
-  const video = React.useRef<HTMLVideoElement>(null);
-  const [volume, setVolume] = useLocalStorage("volume", "0");
+  const produtos = useFetch<Produto[]>("https://data.origamid.dev/produtos/");
 
-  React.useEffect(() => {
-    if (!video.current) return;
-    const volumeNumber = Number(volume);
-    if (volumeNumber >= 0 && volumeNumber <= 1) {
-      video.current.volume = volumeNumber;
-    }
-  }, [volume]);
-
-  return (
-    <div>
-      <div className="flex">
-        <button onClick={() => setVolume("0")}>0</button>
-        <button onClick={() => setVolume("0.5")}>50</button>
-        <button onClick={() => setVolume("1")}>100</button>
-      </div>
-      <video controls ref={video} src={videoSrc}>
-        {" "}
-      </video>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
