@@ -8,9 +8,9 @@ function App() {
 
   React.useEffect(() => {
     if (!video.current) return;
-    const volumeStr = Number(volume);
-    if (volumeStr >= 0 && volumeStr <= 1) {
-      video.current.volume = volumeStr;
+    const volumeNumber = Number(volume);
+    if (volumeNumber >= 0 && volumeNumber <= 1) {
+      video.current.volume = volumeNumber;
     }
   }, [volume]);
 
