@@ -1,48 +1,20 @@
 import React from "react";
-import Input from "./Input";
-import { Venda } from "./Venda";
+import videoSrc from "./video.mp4";
 
 function App() {
-  const [inicio, setInicio] = React.useState("");
-  const [final, setFinal] = React.useState("");
-  const [data, setData] = React.useState<null | Venda[]>(null);
+  const video = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
-    if (inicio !== "" && final !== "") {
-      fetch(`https://data.origamid.dev/vendas/?inicio=${inicio}&final=${final}`)
-        .then((response) => response.json())
-        .then((json) => setData(json as Venda[]))
-        .catch((error) => console.log(error));
-    }
-  }, [inicio, final]);
+    console.log(video.current);
+  }, []);
 
   return (
     <div>
-      <div>
-        <Input
-          id="inicio"
-          label="Início"
-          setState={setInicio}
-          type="date"
-          value={inicio}
-        />
-        <Input
-          id="final"
-          label="Final"
-          setState={setFinal}
-          type="date"
-          value={final}
-        />
+      <div className="flex">
+        <button onClick={() => video.current?.play}>Play</button>
+        <button onClick={() => video.current?.pause}>Pause</button>
       </div>
-      <ul>
-        {data !== null && <p>Total de vendas: {data.length}</p>}
-        {data !== null &&
-          data.map((venda) => (
-            <li key={venda.id}>
-              {venda.nome}: {venda.status}
-            </li>
-          ))}
-      </ul>
+      <video controls ref={video} src={videoSrc}></video>
     </div>
   );
 }
