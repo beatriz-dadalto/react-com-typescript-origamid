@@ -11,7 +11,9 @@ function App() {
   return (
     <div>
       <p>Total: {total}</p>
-      <Button tamanho="1.25rem" onClick={incrementar}>Incrementar</Button>
+      <Button tamanho="1.25rem" onClick={incrementar}>
+        Incrementar
+      </Button>
     </div>
   );
 }
