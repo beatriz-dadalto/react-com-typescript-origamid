@@ -1,14 +1,14 @@
 import React from "react";
-import { UiContextProvider } from "./UiContext";
 import Header from "./Header";
 import Content from "./Content";
+import { UserContextProvider } from "./UserContext";
 
 function App() {
   return (
-    <UiContextProvider>
+    <UserContextProvider>
       <Header />
       <Content />
-    </UiContextProvider>
+    </UserContextProvider>
   );
 }
 

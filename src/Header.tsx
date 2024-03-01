@@ -1,12 +1,13 @@
-import { useUi } from "./UiContext";
+import { useUser } from "./UserContext";
 
 const Header = () => {
-  const { setDark } = useUi();
 
+  const {data} = useUser();
+  if (!data) return null;
   return (
-    <div>
-      <button onClick={(dark) => setDark((dark) => !dark)}>Ui Mode</button>
-    </div>
+    <h1>
+      {data.nome}
+    </h1>
   );
 };
 
