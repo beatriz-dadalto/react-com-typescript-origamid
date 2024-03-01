@@ -9,7 +9,7 @@ import { DataContextProvider } from "./Context/DataContext";
 function App() {
   return (
     <DataContextProvider>
-      <div>
+      <div className="container">
         <Sidenav />
         <main>
           <Header />
