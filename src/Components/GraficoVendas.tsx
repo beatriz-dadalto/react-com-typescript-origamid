@@ -10,31 +10,40 @@ import {
   YAxis,
 } from "recharts";
 
-const dadaosGrafico = [
-  {
-    data: "2023-05-03",
-    pago: 3000,
-    processando: 30000,
-    falha: 2000,
-  },
-  {
-    data: "2023-05-04",
-    pago: 5000,
-    processando: 80000,
-    falha: 4000,
-  },
-  {
-    data: "2023-05-05",
-    pago: 5000,
-    processando: 80000,
-    falha: 4000,
-  },
-];
+type VendaDia = {
+  data: string;
+  pago: number;
+  processando: number;
+  falha: number;
+};
+
+function transformData(data: IVenda[]): VendaDia[] {
+  const dias = data.reduce((counter: { [key: string]: VendaDia }, item) => {
+    const dia = item.data.split(" ")[0];
+    if (!counter[dia]) {
+      counter[dia] = {
+        data: dia,
+        pago: 0,
+        falha: 0,
+        processando: 0,
+      };
+    }
+    counter[dia][item.status] += item.preco;
+    return counter;
+  }, {});
+
+  return Object.values(dias).map((dia) => ({
+    ...dia,
+    data: dia.data.substring(5),
+  }));
+}
 
 const GraficoVendas = ({ data }: { data: IVenda[] }) => {
+  const transformedData = transformData(data);
+
   return (
     <ResponsiveContainer width={"99%"} height={400}>
-      <LineChart data={dadaosGrafico}>
+      <LineChart data={transformedData}>
         <XAxis dataKey="data" />
         <YAxis />
         <Tooltip />
