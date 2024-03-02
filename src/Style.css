@@ -1,3 +1,17 @@
+/* html {
+  --color-1: #000;
+  --color-2: #111;
+  --color-3: #A36Af9;
+  --color-3: #FD9ACB;
+  --color-3: #FCC203;
+  --color-4: #F5F5F5;
+  --color-5: #FFFFFF;
+}
+
+.box {
+  outline: 2px solid var(--color-1);
+} */
+
 html {
   --color-1: #463220;
   --color-2: #66593c;
@@ -106,7 +120,7 @@ ul {
   flex: 1;
   font-size: 1.125rem;
   text-decoration: none;
-  margin: .25rem 0;
+  margin: 0.25rem 0;
   color: var(--color-1);
   padding: var(--gap) 0px;
 }
@@ -149,4 +163,44 @@ ul {
 .venda a {
   text-decoration: none;
   color: inherit;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 1000px) {
+  .resumo {
+    flex-direction: column;
+  }
+  .daterange {
+    grid-template-columns: 1fr;
+  }
+  .daterange *:last-child {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  html {
+    --gap-s: 0.5rem;
+    --gap: 0.75rem;
+  }
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .flex {
+    flex-direction: column;
+  }
+  .sidenav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .sidenav li a {
+    font-size: 0.875rem;
+  }
+  .venda {
+    grid-template-columns: 1fr;
+  }
+  .venda div:last-child {
+    justify-self: start;
+  }
 }
